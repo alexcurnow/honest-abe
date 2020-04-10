@@ -1,4 +1,9 @@
-export const Politician = (politician, pacDonationsArr, pacsArr) => {
+export const Politician = (
+  politician,
+  pacDonationsArr,
+  pacsArr,
+  relatedBills
+) => {
   return `
   <section class="politician">
     <header class="politician__name">
@@ -7,6 +12,12 @@ export const Politician = (politician, pacDonationsArr, pacsArr) => {
     <div class="politician__info">
       <div>Age: ${politician.age}</div>
       <div>Represents: ${politician.district}</div>
+    </div>
+    <div class="politician__bills">
+      <h4>Sponsored Bills</h4>
+      <ul>
+      ${relatedBills.map((bill) => `<li>${bill.name}</li>`).join('')}
+      </ul>
     </div>
     <div class="pac__donors">
       <h4>PAC Donors (if applicable)</h4>

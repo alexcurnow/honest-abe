@@ -6,6 +6,8 @@ import { getPacs } from './pacs/pacsProvider.js'
 import { getCorporateDonations } from './pacs/corporationDonationsProvider.js'
 import { PacList } from './pacs/PacList.js'
 import { getPacDonations } from './politicians/pacDonationsProvider.js'
+import { getBills } from './legislation/legislationProvider.js'
+import { getPoliticianLegislations } from './politicians/politicianLegislationProvider.js'
 
 getPoliticians()
   .then(getCorporations)
@@ -14,4 +16,6 @@ getPoliticians()
   .then(getCorporateDonations)
   .then(PacList)
   .then(getPacDonations)
+  .then(getBills)
+  .then(getPoliticianLegislations)
   .then(PoliticianList)

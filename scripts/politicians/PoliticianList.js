@@ -2,6 +2,8 @@ import { usePoliticians } from './politicianProvider.js'
 import { Politician } from './Politician.js'
 import { usePacs } from '../pacs/pacsProvider.js'
 import { usePacDonations } from './pacDonationsProvider.js'
+import { useBills } from '../legislation/legislationProvider.js'
+import { usePoliticianLegislations } from './politicianLegislationProvider.js'
 
 const contentTarget = document.querySelector('.politicianContainer')
 
@@ -9,6 +11,8 @@ export const PoliticianList = () => {
   const politicians = usePoliticians()
   const pacs = usePacs()
   const pacDonations = usePacDonations()
+  const bills = useBills()
+  const politicianLegislations = usePoliticianLegislations()
 
   const render = () => {
     contentTarget.innerHTML = '<h1>POLITICIANS</h1>'
@@ -24,10 +28,21 @@ export const PoliticianList = () => {
           return relatedPacs.push(foundPac)
         })
 
+        const politicianBillsRelations = politicianLegislations.filter(
+          (rel) => rel.politicianId === politician.id
+        )
+
+        let relatedBills = []
+        politicianBillsRelations.forEach((rel) => {
+          const foundBill = bills.find((bill) => bill.id === rel.legislationId)
+          return relatedBills.push(foundBill)
+        })
+
         contentTarget.innerHTML += Politician(
           politician,
           pacDonationRelations,
-          relatedPacs
+          relatedPacs,
+          relatedBills
         )
       })
       .join('')
