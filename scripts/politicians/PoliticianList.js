@@ -23,7 +23,6 @@ export const PoliticianList = () => {
           const foundPac = pacs.find((pac) => pac.id === rel.pacId)
           return relatedPacs.push(foundPac)
         })
-        console.log(pacDonationRelations, relatedPacs)
 
         contentTarget.innerHTML += Politician(
           politician,
